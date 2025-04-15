@@ -4,6 +4,19 @@ const AnonymizeUAPlugin = require('puppeteer-extra-plugin-anonymize-ua');
 const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
 const path = require('path');
 
+
+// Ensure Puppeteer installs the browser before launching
+const installBrowser = async () => {
+  const puppeteer = require('puppeteer');
+  try {
+    // This will ensure Puppeteer installs the necessary browser
+    await puppeteer.install();
+    console.log('Chrome has been installed');
+  } catch (error) {
+    console.error('Failed to install Chrome:', error.message);
+  }
+};
+
 // Optional: tweak stealth settings
 const stealth = StealthPlugin();
 stealth.enabledEvasions.delete('iframe.contentWindow');
