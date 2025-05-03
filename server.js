@@ -55,7 +55,7 @@ app.post('/api/scrape', validateAuthHeaders, async (req, res) => {
   scraperInstances[scraperId] = scraper;
   
   try {
-    console.log(`Starting scraping job for ${searchUrl}`);
+    console.log(`Starting scraping job`);
     
     // Initialize browser
     await scraper.initialize();

@@ -71,7 +71,7 @@ class ApolloScraper {
    */
   async login(googleEmail, googlePassword) {
     try {
-      console.log('Starting Google OAuth login process for Apollo.io...');
+      console.log('Starting Google OAuth login process...');
       
       // Navigate to Apollo.io login page
       await this.page.goto('https://app.apollo.io/#/login', {
@@ -115,7 +115,7 @@ class ApolloScraper {
       // Wait for Google login page to load
       await this.page.waitForSelector('input[type="email"]', { 
         visible: true,
-        timeout: 10000
+        timeout: 5000
       });
       
       // Enter Google email
@@ -156,7 +156,7 @@ class ApolloScraper {
       // Wait for and click the 'Next' or 'Sign In' button for password
       await this.page.waitForSelector('#passwordNext', { 
         visible: true, 
-        timeout: 10000 
+        timeout: 5000 
       });
       await Promise.all([
         this.page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 }),
@@ -164,7 +164,7 @@ class ApolloScraper {
       ]);
    
       
-      console.log('Successfully logged in to Apollo.io via Google OAuth');
+      console.log('Successfully logged in via Google OAuth');
       return true;
     } catch (error) {
       console.error('Google OAuth login error:', error.message);
