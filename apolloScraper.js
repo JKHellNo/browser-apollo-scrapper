@@ -40,11 +40,23 @@ class ApolloScraper {
    */
   async initialize() {
     this.browser = await puppeteer.launch({
-      headless: true,
+      headless: false,
       ignoreDefaultArgs: ['--disable-extensions'],
       args: ['--start-maximized', '--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
     });
     this.page = await this.browser.newPage();
+
+     await this.page.setUserAgent(
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'
+  );
+
+  await this.page.setViewport({ width: 1920, height: 1080 });
+
+  await this.page.setExtraHTTPHeaders({
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Referer': 'https://www.google.com/',
+  });
+
     
     // Set viewport to a reasonable size
     await this.page.setViewport({ width: 1280, height: 800 });
@@ -134,16 +146,6 @@ class ApolloScraper {
       // Wait a few seconds to let the page update
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // // 🖼️ Screenshot for debugging
-      // await this.page.screenshot({ path: 'after_email_click.png' });
-      // console.log('Saved screenshot: after_email_click.png');
-
-      // // 📄 Print page content to help debug
-      // const currentHTML = await this.page.content();
-      // console.log('=== PAGE HTML START ===');
-      // console.log(currentHTML.substring(0, 3000)); // print just the start so it doesn't overload
-      // console.log('=== PAGE HTML END ===');
-
       // Wait for password field
       await this.page.waitForSelector('input[type="password"], div[jsname="B34EJ"]', { visible: true, timeout: 15000 });
       
@@ -209,42 +211,6 @@ class ApolloScraper {
   return results;
 });
 
-
-// // STEP 2: Add emails by interacting with the page      #handle buttons that appear
-// const rowHandles = await this.page.$$('.zp_tFLCQ[role="rowgroup"] > div[role="row"]');
-
-// for (let i = 0; i < rowHandles.length; i++) {
-//   const row = rowHandles[i];
-//   await row.evaluate(r => r.scrollIntoView({ behavior: 'smooth', block: 'center' }));
-
-//   const emailButton = await row.$('button span.zp_tZMYK');
-//   let email = null;
-
-//   if (emailButton) {
-//     const buttonText = await (await emailButton.getProperty('innerText')).jsonValue();
-
-//     if (buttonText.trim() === 'Access email') {
-//       try {
-//         await emailButton.click();
-//         await this.page.waitForFunction(
-//           row => /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/.test(row.innerText),
-//           { timeout: 3000 },
-//           row
-//         );
-//       } catch (err) {
-//         console.warn(`Email for contact ${contacts[i].name} did not load in time.`);
-//       }
-//     }
-//   }
-
-//   // Try to get the email after click
-//   email = await row.evaluate(el => {
-//     const match = el.innerText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
-//     return match ? match[0] : null;
-//   });
-
-//   contacts[i].email = email;
-// }
 
 console.log(contacts);
 
