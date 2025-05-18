@@ -5,6 +5,13 @@ A Node.js application that provides an API for scraping contact information from
 ## Issues
   Cloudfare human check
   
+## Setting up Docker (if !Windows or issues)
+  Download docker at https://www.docker.com/products/docker-desktop/
+  Open PowerShell or Command Prompt, then run: docker --version
+  docker build -t apollo-scraper .
+  docker run --rm --cap-add=SYS_ADMIN --shm-size=1gb -p 3000:3000 apollo-scraper
+
+  
 
 ## Features
 

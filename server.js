@@ -86,7 +86,7 @@ app.post('/api/scrape', validateAuthHeaders, async (req, res) => {
     try {
       if (scraperInstances[scraperId]) {
         await scraper.close();
-        delete scraperInstances[scraperId];
+        //delete scraperInstances[scraperId];
       }
     } catch (cleanupError) {
       console.error(`Error during cleanup: ${cleanupError.message}`);
