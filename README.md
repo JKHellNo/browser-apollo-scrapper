@@ -2,10 +2,20 @@
 
 A Node.js application that provides an API for scraping contact information from Apollo.io search results using Google OAuth authentication.
 
-## Issues (currently not working)
-  Cloudfare javascript challenge
-  GoogleOauth update detection
+## Issues
+  Temporary solution by importing cookies
   
+## Setting up Docker (if !Windows or issues)
+  Download docker at https://www.docker.com/products/docker-desktop/
+  CD into the scrapper folder
+  docker build --network=host -t apolloscraper .
+  docker run -p 3000:3000 apolloscraper
+
+
+## Setting up Cookie
+https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm 
+Export as JSON
+paste it into cookies.json
 
 ## Features
 
