@@ -4,18 +4,28 @@ A Node.js application that provides an API for scraping contact information from
 
 ## Issues
   Temporary solution by importing cookies
-  
-## Setting up Docker (if !Windows or issues)
-  Download docker at https://www.docker.com/products/docker-desktop/
-  CD into the scrapper folder
-  docker build --network=host -t apolloscraper .
-  docker run -p 3000:3000 apolloscraper
-
 
 ## Setting up Cookie
+```
 https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm 
+Log into Apollo using Google Login
+Use the cookie extension
 Export as JSON
 paste it into cookies.json
+```
+
+<img src="cookies.png" alt="app demo" width=600>
+  
+## Setting up Docker (If you don't use windows, try Docker)
+```
+Make sure you setup the cookie first before doing Docker
+Download docker at https://www.docker.com/products/docker-desktop/
+CD into the scrapper folder
+docker build --network=host -t apolloscraper .
+docker run -p 3000:3000 apolloscraper
+```
+
+
 
 ## Features
 
