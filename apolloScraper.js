@@ -21,7 +21,7 @@ class ApolloScraper {
   }
   async initialize() {
     this.browser = await puppeteer.launch({
-      headless: false,
+      headless: 'new',
       ignoreDefaultArgs: ['--disable-extensions'],
       args: ['--start-maximized', '--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
     });
