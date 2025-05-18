@@ -4,7 +4,6 @@ A Node.js application that provides an API for scraping contact information from
 
 ## Issues
   Temporary solution by importing cookies
-
   
 ## Setting up Docker (if !Windows or issues)
   Download docker at https://www.docker.com/products/docker-desktop/
