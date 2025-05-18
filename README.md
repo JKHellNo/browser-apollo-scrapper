@@ -2,8 +2,9 @@
 
 A Node.js application that provides an API for scraping contact information from Apollo.io search results using Google OAuth authentication.
 
-## Issues
-  Cloudfare human check
+## Issues (currently not working)
+  Cloudfare javascript challenge
+  GoogleOauth update detection
   
 
 ## Features
